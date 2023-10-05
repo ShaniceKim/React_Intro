@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +12,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import myImage from './images/loginRightSide.jpg'; // 이미지 가져오기
 
 function Copyright(props) {
   return (
@@ -22,10 +23,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
+      <Link color="inherit">Your Emotion</Link> {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
@@ -53,17 +51,16 @@ export default function SignInSide() {
           item
           xs={false}
           sm={4}
-          md={7}
+          md={7} // 이미지 영역 (화면 우측)
           sx={{
-            backgroundImage:
-              'url(https://source.unsplash.com/random?wallpapers)',
+            backgroundImage: `url(${myImage})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light'
                 ? t.palette.grey[50]
                 : t.palette.grey[900],
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: 'right top', // 이미지를 화면 우측 상단으로 정렬
           }}
         />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -116,22 +113,40 @@ export default function SignInSide() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  backgroundColor: '#E3CEF6', // 원래 배경색(연보라색)
+                  '&:hover': {
+                    backgroundColor: 'lightgray', // 호버 시 배경색(연한 회색)
+                  },
+                }}
+                color="primary" // 텍스트 색상을 기본값(primary)으로 설정
               >
                 Sign In
               </Button>
+
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <Link
+                    href="#"
+                    variant="body2"
+                    sx={{ color: '#E3CEF6', textDecoration: 'none' }}
+                  >
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link
+                    href="#"
+                    variant="body2"
+                    sx={{ color: '#E3CEF6', textDecoration: 'none' }}
+                  >
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
               </Grid>
+
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
