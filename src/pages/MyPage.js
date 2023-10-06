@@ -1,10 +1,11 @@
+import { Navigate } from 'react-router-dom';
 const MyPage = () => {
-  return (
-    <div>
-      <h1>MyPage</h1>
-      <p>마이페이지 입니당</p>
-    </div>
-  );
+  const isLoggedIn = false;
+
+  if (!isLoggedIn) {
+    return <Navigate to="/signin" replace={true} />;
+  }
+  return <div>마이페이지</div>;
 };
 
 export default MyPage;
