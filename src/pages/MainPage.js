@@ -36,14 +36,20 @@ const theme = createTheme({
 const cards = [
   {
     id: 1,
-    title: 'Emotion Chat Room 감정 기반 채팅방',
-    description: '당신의 기분을 보여주세요!',
+    title: (
+      <Typography variant="body2">
+        Emotion Chat Room 감정 기반 채팅방
+      </Typography>
+    ),
+    description: (
+      <Typography variant="caption">당신의 기분을 보여주세요!</Typography>
+    ),
     imageUrl: 'https://source.unsplash.com/random?wallpapers',
   },
   {
     id: 2,
-    title: 'Emotion Sparring Room',
-    description: '감정 스파링',
+    title: <Typography variant="body2">Emotion Sparring Room</Typography>,
+    description: <Typography variant="caption">감정 스파링</Typography>,
     imageUrl: 'https://source.unsplash.com/random?nature',
   },
 ];
@@ -66,21 +72,27 @@ export default function Album() {
           <Container maxWidth="sm">
             <Typography
               component="h1"
-              variant="h2"
+              variant="h3"
               align="center"
               color="text.primary"
               gutterBottom
             >
-              How are your feeling today?
+              Mood Canvas
             </Typography>
             <Typography
-              variant="h5"
+              variant="h7"
               align="center"
               color="text.secondary"
               paragraph
+              style={{ whiteSpace: 'pre-wrap' }}
             >
-              오늘 당신의 기분은 어떤가요? 당신의 감정을 얼굴로 표현해보세요!
+              <br />
+              오늘 당신의 기분은 어떤가요?
+              <br />
+              <br />
+              당신의 감정을 얼굴로 표현해보세요!
             </Typography>
+
             <Stack
               sx={{ pt: 4 }}
               direction="row"
@@ -130,7 +142,7 @@ export default function Album() {
           color="text.secondary"
           component="p"
         >
-          YourEmotion@2023
+          MoodCanvas@2023
         </Typography>
       </Box>
       {/* End footer */}

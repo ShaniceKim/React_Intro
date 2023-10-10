@@ -2,35 +2,24 @@ import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
 const linkStyle = {
-  fontSize: '14px', // 원하는 글꼴 크기로 설정
-  textDecoration: 'none', // 밑줄 제거
-  color: 'black', // 링크 텍스트 색상 설정 (원하는 색상으로 변경)
+  fontSize: '14px',
+  textDecoration: 'none',
+  color: 'black',
+};
+const headerStyle = {
+  background: '#d4ebf8', // 밝은 파란색
+  padding: '16px',
+  fontSize: '17px',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
 };
 
 const Layout = () => {
   return (
     <div>
-      <header
-        style={{
-          background: 'white',
-          padding: '16px',
-          fontSize: '17px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          {/* <img
-            src="/img/your-emotion.jpeg"
-            alt=""
-            style={{
-              width: '180px',
-              height: '150px',
-              marginRight: '10px',
-            }}
-          /> */}
-        </div>
+      <header style={headerStyle}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>Mood Canvas</div>
         <nav>
           <ul
             style={{
@@ -58,6 +47,7 @@ const Layout = () => {
           </ul>
         </nav>
       </header>
+
       <main>
         <Outlet />
       </main>
