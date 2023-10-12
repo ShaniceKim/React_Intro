@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
@@ -7,7 +8,7 @@ const linkStyle = {
   color: 'black',
 };
 const headerStyle = {
-  background: '#d4ebf8', // 밝은 파란색
+  background: 'linear-gradient(to bottom, #B5E8EE, rgba(255, 255, 255, 0.8))',
   padding: '16px',
   fontSize: '17px',
   display: 'flex',
@@ -19,7 +20,17 @@ const Layout = () => {
   return (
     <div>
       <header style={headerStyle}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>Mood Canvas</div>
+        <div
+          style={{
+            display: 'flex',
+            fontSize: '20px',
+            borderRadius: '30px',
+            alignItems: 'center',
+            fontWeight: 'bold',
+          }}
+        >
+          Mood Canvas
+        </div>
         <nav>
           <ul
             style={{
