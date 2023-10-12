@@ -1,11 +1,12 @@
-import { Navigate } from 'react-router-dom';
-const MyPage = () => {
-  const isLoggedIn = false;
+import React from "react";
+import ReactCalendar from "../components/calendar/ReactCalendar";
 
-  if (!isLoggedIn) {
-    return <Navigate to="/signin" replace={true} />;
-  }
-  return <div>마이페이지</div>;
+const MyPage = () => {
+  return (
+    <div>
+      <ReactCalendar />
+    </div>
+  );
 };
 
 export default MyPage;
