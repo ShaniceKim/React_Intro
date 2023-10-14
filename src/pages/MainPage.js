@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import Stack from '@mui/material/Stack';
+import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import './MainPage.css';
 import PhotoPage from './PhotoPage';
-
-import Scrollbar from 'smooth-scrollbar';
 
 const cards = [
   {
@@ -43,10 +42,9 @@ export default function Album() {
   const subInitialText = '당신의 감정을 얼굴로 표현해보세요 !';
   const [hoveredCard, setHoveredCard] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false); // Added state for modal
-
   const typingSpeed = 100;
 
-  const typeText = (text, setText, initialText) => {
+  const typeText = (initialText) => {
     let i = 0;
     const intervalId = setInterval(() => {
       if (i < initialText.length) {
@@ -58,17 +56,27 @@ export default function Album() {
     }, typingSpeed);
   };
 
-  const typeSubText = (text, setText, subInitialText) => {
+  const typeSubText = (subInitialText) => {
     let i = 0;
     const intervalId = setInterval(() => {
       if (i < subInitialText.length) {
-        setText((prevText) => prevText + subInitialText[i]);
+        setSubText((prevSubText) => prevSubText + subInitialText[i]);
         i++;
       } else {
         clearInterval(intervalId);
       }
     }, typingSpeed);
   };
+
+  useEffect(() => {
+    typeText(initialText);
+
+    // When "Mood Canvas" typing animation is finished
+    setTimeout(() => {
+      setText(''); // Clear the text for the new typing animation
+      typeSubText(subInitialText);
+    }, initialText.length * typingSpeed + 500); // Adding a delay of 500ms after "Mood Canvas" typing animation
+  }, []);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -78,24 +86,7 @@ export default function Album() {
     setIsModalOpen(false);
   };
 
-  useEffect(() => {
-    typeText(text, setText, initialText);
-
-    // When "Mood Canvas" typing animation is finished
-    setTimeout(() => {
-      setText(''); // Clear the text for the new typing animation
-      typeSubText(subText, setSubText, subInitialText);
-    }, initialText.length * typingSpeed + 500); // Adding a delay of 500ms after "Mood Canvas" typing animation
-  }, []);
-
   const mainRef = useRef(null);
-
-  useEffect(() => {
-    // main 요소에 스무스 스크롤을 적용합니다.
-    if (mainRef.current) {
-      Scrollbar.init(mainRef.current);
-    }
-  }, []);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -180,7 +171,7 @@ export default function Album() {
             <span className="close" onClick={closeModal}>
               &times;
             </span>
-            <h2>모달</h2>
+            <PhotoPage /> {/* PhotoPage 컴포넌트를 모달 창에 렌더링 */}
           </div>
         </div>
       )}
